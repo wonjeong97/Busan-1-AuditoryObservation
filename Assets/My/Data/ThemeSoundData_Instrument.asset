@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34679ad3a089bce4abc23e359e8710f4, type: 3}
+  m_Name: ThemeSoundData_Instrument
+  m_EditorClassIdentifier: 
+  themeType: 0
+  items:
+  - soundName: violin
+    icon: {fileID: 21300000, guid: 2a9d0b0b19d1af548b97e75e9c487896, type: 3}
+    clip: {fileID: 8300000, guid: bff79af0ab338204a990f1883154e4b8, type: 3}
+  - soundName: trumpet
+    icon: {fileID: 21300000, guid: 422eb91f97edf6e44b255605c4076ab8, type: 3}
+    clip: {fileID: 0}
+  - soundName: timpani
+    icon: {fileID: 21300000, guid: 8f2a4234cfcbdab429bf8f08ab0a7eed, type: 3}
+    clip: {fileID: 8300000, guid: 53994cd41c75fb24187b1fdc164780ea, type: 3}
+  - soundName: piano
+    icon: {fileID: 21300000, guid: 3a9936a0405d909469cccf5fdfc44820, type: 3}
+    clip: {fileID: 8300000, guid: 2cbde38dc3e4ff64383562895861d825, type: 3}
+  - soundName: guitar
+    icon: {fileID: 21300000, guid: 5d04cfc0eee902945b1494ec32128aae, type: 3}
+    clip: {fileID: 0}
+  - soundName: flute
+    icon: {fileID: 21300000, guid: 466882cd1ea3e8c4c840e36975ac996c, type: 3}
+    clip: {fileID: 8300000, guid: e7863d13e63de7249a8f9d3950072bcf, type: 3}
+  easyAnswerIndices: 0500000003000000
+  hardAnswerIndices: 000000000200000004000000
