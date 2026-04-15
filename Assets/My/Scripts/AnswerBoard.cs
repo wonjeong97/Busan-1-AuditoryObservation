@@ -2,21 +2,55 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnswerBoard : MonoBehaviour
-{
-    [SerializeField] private AnswerSlot[] slots;
-
-    private readonly List<SoundItem>          selectedItems   = new();
-    private          SoundToggleButton[]       allButtons;
+{   
+    [SerializeField] private AnswerSlot slotPrefab;
+    [SerializeField] private Transform slotParent;
+    
+    private AnswerSlot[] slots;
+    private List<SoundItem> selectedItems;
+    private SoundToggleButton[] allButtons;
 
     public bool IsFull => selectedItems.Count >= slots.Length;
     public IReadOnlyList<SoundItem> SelectedItems => selectedItems;
+    
+    /// <summary>
+    /// 객체 초기화 시 리스트를 할당합니다.
+    /// </summary>
+    private void Awake()
+    {
+        selectedItems = new List<SoundItem>();
+    }
 
-    public void Init(SoundToggleButton[] buttons)
+    /// <summary>
+    /// 지정된 정답 개수만큼 슬롯을 동적으로 생성하고 보드를 초기화합니다.
+    /// </summary>
+    /// <param name="buttons">사용 가능한 전체 사운드 버튼 배열</param>
+    /// <param name="requiredSlotCount">현재 테마와 난이도에 요구되는 정답 개수</param>
+    public void Init(SoundToggleButton[] buttons, int requiredSlotCount)
     {
         allButtons = buttons;
 
-        foreach (var btn in allButtons)
-            btn.OnToggled += OnButtonToggled;
+        if (slots != null)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i])
+                {
+                    Destroy(slots[i].gameObject);
+                }
+            }
+        }
+
+        slots = new AnswerSlot[requiredSlotCount];
+        for (int i = 0; i < requiredSlotCount; i++)
+        {
+            slots[i] = Instantiate(slotPrefab, slotParent);
+        }
+
+        for (int i = 0; i < allButtons.Length; i++)
+        {
+            allButtons[i].OnToggled += OnButtonToggled;
+        }
 
         Refresh();
     }

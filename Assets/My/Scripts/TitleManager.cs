@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
@@ -18,6 +17,6 @@ public class TitleManager : MonoBehaviour
 
     private void OnStartButtonClicked()
     {
-        SceneManager.LoadScene(SceneNames.SelectTheme);
+        GameManager.Instance.LoadSelectTheme();
     }
 }

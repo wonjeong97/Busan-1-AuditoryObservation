@@ -28,7 +28,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2cbde38dc3e4ff64383562895861d825, type: 3}
   - soundName: guitar
     icon: {fileID: 21300000, guid: 5d04cfc0eee902945b1494ec32128aae, type: 3}
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 694e306c96efffe468e69d7680f8b048, type: 3}
   - soundName: flute
     icon: {fileID: 21300000, guid: 466882cd1ea3e8c4c840e36975ac996c, type: 3}
     clip: {fileID: 8300000, guid: e7863d13e63de7249a8f9d3950072bcf, type: 3}

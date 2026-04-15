@@ -16,7 +16,7 @@ MonoBehaviour:
   items:
   - soundName: bird
     icon: {fileID: 21300000, guid: 0117ab3a0b8bd744da12b5160aa7f6b8, type: 3}
-    clip: {fileID: 8300000, guid: f3db117e3b29ee64aa254fbde43b9c7a, type: 3}
+    clip: {fileID: 8300000, guid: 2948506623717964fb3f89c187487a31, type: 3}
   - soundName: wind
     icon: {fileID: 21300000, guid: 20875dff801602047aea30a8717ae340, type: 3}
     clip: {fileID: 8300000, guid: 41cb6651b52c6a746a26551e9694ed22, type: 3}

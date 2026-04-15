@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectThemeManager : MonoBehaviour
@@ -55,7 +54,7 @@ public class SelectThemeManager : MonoBehaviour
     {
         if (currentPage == 1)
         {
-            SceneManager.LoadScene(SceneNames.Title);
+            GameManager.Instance.LoadTitle();
         }
         else
         {
@@ -94,7 +93,7 @@ public class SelectThemeManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             remaining--;
         }
-        SceneManager.LoadScene(SceneNames.Title);
+        GameManager.Instance.LoadTitle();
     }
 
     private void ShowPage(int page)
@@ -109,9 +108,9 @@ public class SelectThemeManager : MonoBehaviour
         if (timeoutCoroutine != null)
             StopCoroutine(timeoutCoroutine);
 
-        GameSession.Theme = selectedTheme;
-        GameSession.Difficulty = difficulty;
-        SceneManager.LoadScene(SceneNames.Game);
+        GameManager.Instance.SetTheme(selectedTheme);
+        GameManager.Instance.SetDifficulty(difficulty);
+        GameManager.Instance.LoadGame();
     }
 
     public ThemeType GetSelectedTheme() => selectedTheme;
