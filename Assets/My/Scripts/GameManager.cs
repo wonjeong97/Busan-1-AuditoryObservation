@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private Reporter   reporter;
     [SerializeField] private GameObject systemCanvas;
+    
+    [Header("UI Audio")]
+    [SerializeField] private AudioSource uiAudioSource;
+    [SerializeField] private AudioClip defaultClickSound;
 
     private void Awake()
     {
@@ -41,7 +45,6 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.M)) 
         {
             Cursor.visible = !Cursor.visible;
-            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 
@@ -75,5 +78,25 @@ public class GameManager : MonoBehaviour
         GameSession.Theme      = default;
         GameSession.Difficulty = default;
         GameSession.IsCorrect  = false;
+    }
+    
+    /// <summary>
+    /// 기본 UI 클릭 효과음을 재생합니다.
+    /// </summary>
+    public void PlayUIClickSound()
+    {
+        if (!uiAudioSource)
+        {
+            Debug.LogWarning("GameManager에 uiAudioSource가 할당되지 않았습니다.");
+            return;
+        }
+
+        if (!defaultClickSound)
+        {
+            Debug.LogWarning("GameManager에 defaultClickSound가 할당되지 않았습니다.");
+            return;
+        }
+
+        uiAudioSource.PlayOneShot(defaultClickSound);
     }
 }
