@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Wonjeong.Utils;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class GameSceneManager : MonoBehaviour
     /// <returns>IEnumerator 지연 대기 객체</returns>
     private IEnumerator PlayAfterDelay()
     {
-        yield return new WaitForSeconds(PlayDelay);
+        yield return CoroutineData.GetWaitForSeconds(PlayDelay);
         OnPlayClicked();
     }
 

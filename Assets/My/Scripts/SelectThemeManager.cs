@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Wonjeong.Utils;
 
 public class SelectThemeManager : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class SelectThemeManager : MonoBehaviour
 
     [Header("Page2")]
     [SerializeField] private Text themeNameText;
-    [SerializeField] private Text timeoutText;
     [SerializeField] private Button easyButton;
     [SerializeField] private Button hardButton;
 
@@ -89,8 +89,7 @@ public class SelectThemeManager : MonoBehaviour
         int remaining = (int)TimeoutDuration;
         while (remaining > 0)
         {
-            timeoutText.text = $"<color=#D24E59>{remaining}</color>초 간 선택하지 않으면, 처음으로 돌아가요!";
-            yield return new WaitForSeconds(1f);
+            yield return CoroutineData.GetWaitForSeconds(1f);
             remaining--;
         }
         GameManager.Instance.LoadTitle();

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Wonjeong.Utils;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameAudioPlayer : MonoBehaviour
@@ -63,13 +64,13 @@ public class GameAudioPlayer : MonoBehaviour
 
     private IEnumerator PlayAfterDelay()
     {
-        yield return new WaitForSeconds(PlayDelay);
+        yield return CoroutineData.GetWaitForSeconds(PlayDelay);
         Play();
     }
 
     private void Play()
     {
-        if (audioSource.clip == null) return;
+        if (!audioSource.clip) return;
         audioSource.Play();
     }
 
