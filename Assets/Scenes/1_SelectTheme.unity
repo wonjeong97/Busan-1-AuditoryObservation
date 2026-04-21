@@ -1792,7 +1792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1816598616
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1956606252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1903,7 +1903,6 @@ MonoBehaviour:
   natureButton: {fileID: 1065028995}
   urbanButton: {fileID: 1093428924}
   themeNameText: {fileID: 758150883}
-  timeoutText: {fileID: 0}
   easyButton: {fileID: 1234600408}
   hardButton: {fileID: 1790516280}
   backButton: {fileID: 1413516283}
