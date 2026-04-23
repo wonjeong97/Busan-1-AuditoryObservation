@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ResultPage : MonoBehaviour
@@ -88,6 +89,11 @@ public class ResultPage : MonoBehaviour
             Button newButton = Instantiate(resultButtonPrefab, resultButtonParent);
             generatedButtons.Add(newButton);
 
+            ColorBlock cb         = newButton.colors;
+            cb.highlightedColor   = cb.normalColor;
+            cb.selectedColor      = cb.normalColor;
+            newButton.colors      = cb;
+
             if (i < correctItems.Count)
             {
                 newButton.GetComponent<Image>().sprite = correctItems[i].icon;
@@ -124,6 +130,7 @@ public class ResultPage : MonoBehaviour
 
         if (!audioSource) return;
 
+        EventSystem.current.SetSelectedGameObject(null);
         audioSource.Stop();
         audioSource.clip = clip;
         audioSource.Play();

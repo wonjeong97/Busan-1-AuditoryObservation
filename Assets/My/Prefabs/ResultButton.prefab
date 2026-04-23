@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1216014418925095378}
   - component: {fileID: 1012322442123013919}
   - component: {fileID: -2411652706465302645}
+  - component: {fileID: -8377678998479598346}
   m_Layer: 5
   m_Name: ResultButton
   m_TagString: Untagged
@@ -133,3 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6a6a580ff0f8a4e8d94e7fcedb3441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8377678998479598346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731354582915815180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3b8461dd7d4b84fb6586e69c61209a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: 0.9
+  maxScale: 1.1
+  speed: 2
