@@ -12,10 +12,15 @@ public class ResultPage : MonoBehaviour
 
     [Header("버튼")]
     [SerializeField] private Button homeButton;
+    
+    [Header("Result Sounds")]
+    [SerializeField] private AudioClip allCorrectSound;
+    [SerializeField] private AudioClip wrongSound;
+
+    [SerializeField] private AudioSource audioSource;
 
     private List<Button> generatedButtons;
-    private AudioSource audioSource;
-
+    
     /// <summary>
     /// 객체 초기화 시 컬렉션과 컴포넌트를 할당합니다.
     /// </summary>
@@ -25,8 +30,6 @@ public class ResultPage : MonoBehaviour
     private void Awake()
     {
         generatedButtons = new List<Button>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
     }
 
     /// <summary>
@@ -48,19 +51,17 @@ public class ResultPage : MonoBehaviour
         if (homeButton) homeButton.onClick.RemoveListener(GoToTitle);
     }
 
-    /// <summary>
-    /// 결과 페이지의 UI를 동적으로 설정합니다.
+   // <summary>
+    /// 결과 페이지의 UI를 동적으로 설정하고 결과 피드백 사운드를 재생합니다.
     /// </summary>
     /// <param name="correctItems">해당 테마와 난이도의 실제 정답 아이템 목록</param>
     /// <param name="correctCount">사용자가 맞춘 정답 개수</param>
     /// <param name="totalSlots">현재 게임에서 요구되는 총 정답 개수</param>
     /// <remarks>
-    /// GridLayoutGroup을 참조하여 정답 개수에 따라 열 개수를 동적으로 조절함.
-    /// 4개일 경우 2x2 배열, 그 외에는 개수만큼 열을 만들어 1줄 배열로 정렬.
+    /// GridLayoutGroup을 참조하여 정답 개수에 따라 열 개수를 동적으로 조절하고, 정답 여부에 따른 시청각적 피드백을 제공함.
     /// </remarks>
     public void Setup(IReadOnlyList<SoundItem> correctItems, int correctCount, int totalSlots)
     {
-        // 이전 결과 버튼들을 제거
         foreach (Button btn in generatedButtons)
         {
             if (btn)
@@ -70,7 +71,6 @@ public class ResultPage : MonoBehaviour
         }
         generatedButtons.Clear();
 
-        // GridLayoutGroup 동적 제어
         GridLayoutGroup layoutGroup = resultButtonParent.GetComponent<GridLayoutGroup>();
         
         if (!layoutGroup)
@@ -83,7 +83,6 @@ public class ResultPage : MonoBehaviour
             layoutGroup.constraintCount = totalSlots == 4 ? 2 : totalSlots;
         }
 
-        // 현재 판의 정답 개수만큼 결과 버튼 동적 생성
         for (int i = 0; i < totalSlots; i++)
         {
             Button newButton = Instantiate(resultButtonPrefab, resultButtonParent);
@@ -112,6 +111,31 @@ public class ResultPage : MonoBehaviour
         {
             resultText.text = $"<color=#0074AD>{totalSlots}</color>개 중에 <color=#0074AD>{correctCount}</color>개 정답";
         }
+
+        PlayResultSound(correctCount == totalSlots);
+    }
+    
+    /// <summary>
+    /// 결과에 따른 효과음을 재생합니다.
+    /// </summary>
+    /// <param name="isAllCorrect">모두 정답인지 여부</param>
+    /// <remarks>
+    /// 텍스트 외에 직관적인 청각적 성공 및 실패 피드백을 전달하기 위함.
+    /// </remarks>
+    private void PlayResultSound(bool isAllCorrect)
+    {
+        if (!audioSource) return;
+
+        AudioClip targetClip = isAllCorrect ? allCorrectSound : wrongSound;
+        
+        if (!targetClip)
+        {
+            Debug.LogWarning("[ResultPage] 결과 사운드 클립이 할당되지 않았습니다.");
+            return;
+        }
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(targetClip);
     }
 
     /// <summary>
